@@ -9,7 +9,7 @@ export default function Index() {
   const user = useOptionalUser();
   return (
     <div>
-      <h1>Index</h1>
+      <h1>League Of Wordle</h1>
       <Form method="POST">
         <input type="text" name="champion" id="champion" />
       </Form>

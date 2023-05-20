@@ -9,6 +9,9 @@ auto_rollback = true
 cmd = "start.sh"
 entrypoint = "sh"
 
+[env]
+FLY_PRIMARY_REGION="iad"
+
 [mounts]
 source = "data"
 destination = "/data"
