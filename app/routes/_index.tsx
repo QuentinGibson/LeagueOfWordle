@@ -28,6 +28,7 @@ export default function Index() {
   const championRef = useRef<HTMLInputElement>(null)
   const [search, setSearch] = useState<string>("")
   const [winner, setWinner] = useState(false)
+  const [lost, setLost] = useState(false)
   const [focused, setFocused] = useState(false)
 
   useEffect(() => {
@@ -36,6 +37,12 @@ export default function Index() {
       setWinner(true)
     }
   }, [guesses, chosenChampion, setWinner])
+
+  useEffect(() => {
+    if (guesses.length >= 8 && !winner) {
+      setLost(true)
+    }
+  })
 
   const user = useOptionalUser();
   function handleSubmit(event: FormEvent) {
@@ -49,6 +56,7 @@ export default function Index() {
   }
   function handleChange() {
     setSearch(championRef?.current?.value || "")
+    setSelected("")
   }
   function handleChampionSelect(champion: any) {
     setSearch(champion.name)
@@ -67,7 +75,7 @@ export default function Index() {
         <div className="flex flex-col">
           <div className="flex">
             <input className="" type="text" name="search" id="search" ref={searchRef} onChange={handleChange} onFocus={() => setFocused(true)} />
-            <button disabled={winner} type="submit">Submit</button>
+            <button disabled={winner || lost} type="submit">Submit</button>
           </div>
           {focused && (
             <div className="w-[400px] border border-slate-700 rounded-lg overflow-hidden">
