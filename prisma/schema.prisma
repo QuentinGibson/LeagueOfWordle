@@ -1,0 +1,54 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+  avatar String @default("/img/defaultProfile.webp")
+  plays Int @default(0)
+  wins Int @default(0)
+  loses Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  password Password?
+}
+
+model Password {
+  hash String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
+}
+
+model Champion {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  avatar      String
+  health      Int
+  healthRate  Decimal
+  attack      Int
+  attackRate  Decimal
+  attackSpeed Decimal
+
+  type        Type     @relation("type", fields: [typeId ], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  typeId      String
+
+  subtype     Type?    @relation("subtype",fields: [subtypeId ], references: [id])
+  subtypeId   String?
+}
+
+model Type {
+  id         String     @id @default(cuid())
+  name       String     @unique
+
+  championMains Champion[] @relation("type")
+  championSubs Champion[] @relation("subtype")
+}
