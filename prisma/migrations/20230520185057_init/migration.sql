@@ -2,10 +2,10 @@
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "email" TEXT NOT NULL,
-    "avatar" TEXT NOT NULL,
-    "plays" INTEGER NOT NULL,
-    "wins" INTEGER NOT NULL,
-    "loses" INTEGER NOT NULL,
+    "avatar" TEXT NOT NULL DEFAULT '/img/defaultProfile.webp',
+    "plays" INTEGER NOT NULL DEFAULT 0,
+    "wins" INTEGER NOT NULL DEFAULT 0,
+    "loses" INTEGER NOT NULL DEFAULT 0,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
@@ -27,14 +27,15 @@ CREATE TABLE "Champion" (
     "attack" INTEGER NOT NULL,
     "attackRate" DECIMAL NOT NULL,
     "attackSpeed" DECIMAL NOT NULL,
-    "typeId" TEXT NOT NULL,
-    "subtypeId" TEXT,
-    CONSTRAINT "Champion_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES "Type" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT "Champion_subtypeId_fkey" FOREIGN KEY ("subtypeId") REFERENCES "Type" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "moveSpeed" INTEGER NOT NULL,
+    "roleId" TEXT NOT NULL,
+    "subRoleId" TEXT,
+    CONSTRAINT "Champion_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Champion_subRoleId_fkey" FOREIGN KEY ("subRoleId") REFERENCES "Role" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable
-CREATE TABLE "Type" (
+CREATE TABLE "Role" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL
 );
@@ -49,4 +50,4 @@ CREATE UNIQUE INDEX "Password_userId_key" ON "Password"("userId");
 CREATE UNIQUE INDEX "Champion_name_key" ON "Champion"("name");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Type_name_key" ON "Type"("name");
+CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");

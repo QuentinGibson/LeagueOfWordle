@@ -37,18 +37,19 @@ model Champion {
   attack      Int
   attackRate  Decimal
   attackSpeed Decimal
+  moveSpeed   Int
 
-  type        Type     @relation("type", fields: [typeId ], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  typeId      String
+  role        Role     @relation("role", fields: [roleId ], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  roleId      String
 
-  subtype     Type?    @relation("subtype",fields: [subtypeId ], references: [id])
-  subtypeId   String?
+  subRole     Role?    @relation("subrole",fields: [subRoleId ], references: [id])
+  subRoleId   String?
 }
 
-model Type {
+model Role {
   id         String     @id @default(cuid())
   name       String     @unique
 
-  championMains Champion[] @relation("type")
-  championSubs Champion[] @relation("subtype")
+  championMains Champion[] @relation("role")
+  championSubs Champion[] @relation("subrole")
 }

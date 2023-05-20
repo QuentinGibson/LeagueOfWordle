@@ -1,11 +1,18 @@
 import {prisma} from '~/db.server'
 
-export function createChampion(championData: any) {}
+export async function createChampion(championData: any) {}
 
-export function updateChampion(championID: string, championData: any) {}
+export async function updateChampion(championID: string, championData: any) {}
 
-export function getChampionByID(championID: string) { }
+export async function getChampionByID(championID: string) { }
 
-export function getChampions() { }
+export async function getChampions() {
+  return await prisma.champion.findMany({
+    include: {
+      role: true,
+      subRole: true
+    }
+  });
+ }
 
-export function deleteChampionByID(championID: string) { }
+export async function deleteChampionByID(championID: string) { }
