@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 
 import { useOptionalUser } from "~/utils";
 
-export const meta: V2_MetaFunction = () => [{ title: "Remix Notes" }];
+export const meta: V2_MetaFunction = () => [{ title: "League Of Wordle" }];
 
 export default function Index() {
   const user = useOptionalUser();
