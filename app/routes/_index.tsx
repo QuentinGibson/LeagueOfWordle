@@ -10,8 +10,8 @@ export default function Index() {
   return (
     <div>
       <h1>Index</h1>
-      <Form>
-
+      <Form method="POST">
+        <input type="text" name="champion" id="champion" />
       </Form>
     </div>
   );
