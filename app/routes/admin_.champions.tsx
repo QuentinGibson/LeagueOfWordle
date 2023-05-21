@@ -20,7 +20,7 @@ export default function ComponentName() {
             <div className="flex">
               <Link className="px-4 py-2 bg-indigo-700" to={`/admin/champion/${champion.id}`}>Update Champion</Link>
             </div>
-            <Form method="POST" action="/api/delete">
+            <Form method="POST" action="/api/deleteChampion">
               <button type="submit" className="px-4 py-2 bg-red-500">Delete Champion</button>
               <input type="hidden" name="championID" value={champion.id} />
             </Form>

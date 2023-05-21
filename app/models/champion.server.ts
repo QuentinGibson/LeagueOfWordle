@@ -25,4 +25,6 @@ export async function getChampions() {
   });
  }
 
-export async function deleteChampionByID(championID: string) { }
+export async function deleteChampionByID(championID: string) { 
+  return await prisma.champion.delete({where: {id: championID}})
+}
