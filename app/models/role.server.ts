@@ -8,7 +8,10 @@ export async function createRole(roleData: any) {
 
 export async function updateRole(typeID: string, typeData: any) {}
 
-export async function getRolesByID(typeID: string) { }
+export async function getRoleByID(roleId: string) {
+  const role = await prisma.role.findUnique({where: {id: roleId}})
+  return role
+ }
 
 export async function getRoles() { 
   const types = await prisma.role.findMany()
