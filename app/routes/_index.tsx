@@ -29,6 +29,7 @@ export default function Index() {
   const [selectedOption, setSelectedOption] = useState(null)
   const [tweetText, setTweetText] = useState("")
   const championOptions = champions.map(champion => { return { value: champion.id, label: champion.name } })
+  const user = useOptionalUser()
 
   useEffect(() => {
     const lastGuess = guesses[guesses.length - 1]
@@ -45,7 +46,6 @@ export default function Index() {
     }
   })
 
-  const user = useOptionalUser();
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
     if (selectedOption) {
@@ -176,6 +176,9 @@ export default function Index() {
       <div className="flex item-center mt-24">
         <Link reloadDocument className="px-4 py-2 bg-indigo-500 " to={"/"}>New Game</Link>
       </div>
+      {user && user.role === "ADMIN" && (
+        <div className="flex mt-8"><Link to="admin" className="hover:underline text-indigo-400">Admin Page</Link></div>
+      )}
     </main>
   );
 }

@@ -1,7 +1,12 @@
+import { Champion } from '@prisma/client';
 import invariant from 'tiny-invariant';
 import {prisma} from '~/db.server'
 
-export async function createChampion(championData: any) {}
+
+export async function createChampion(championData: any) {
+  const champion = await prisma.champion.create({data: championData})
+  return {champion}
+}
 
 export async function updateChampion(championID: string, championData: any) {}
 

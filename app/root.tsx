@@ -8,9 +8,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 
-import { getUser } from "~/session.server";
+import { getSession, getUser, sessionStorage } from "~/session.server";
 import stylesheet from "~/tailwind.css";
 import themeStylesheet from "~/theme.css"
 
@@ -21,10 +22,18 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderArgs) => {
-  return json({ user: await getUser(request) });
+  const session = await getSession(request);
+  const message = session.get("globalMessage")
+  return json({ user: await getUser(request), message },
+    {
+      headers: {
+        "Set-Cookie": await sessionStorage.commitSession(session),
+      },
+    });
 };
 
 export default function App() {
+  const { message } = useLoaderData<typeof loader>()
   return (
     <html lang="en" className="h-full">
       <head>
@@ -34,6 +43,9 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full bg-indigo-950 text-white">
+        {message ? (
+          <div className="absolute px-4 py-2 font-bold bg-indigo-800 border border-blue-950 flex justify-center"><p>{message}</p></div>
+        ) : null}
         <Outlet />
         <ScrollRestoration />
         <Scripts />
