@@ -57,7 +57,7 @@ export default function Index() {
     console.log(selectedOption)
   }
   return (
-    <main className="pt-8 px-4 bg-indigo-950">
+    <main className="py-16 px-4 bg-indigo-950">
       <h1 className="text-4xl md:text-7xl font-bold mb-4">League Of Wordle</h1>
       <p className="mb-16 text-xl md:text-2xl">A League Of Legends Wordle-like game by <Link className="text-yellow-400" to={"http://quentdev.com/"}>Quentin Gibson</Link></p>
       <p className="text-xl mb-8 text-center">I'm thinking of a Champion. Guess Which! You have {8 - guesses.length} guesses left!</p>
@@ -154,6 +154,9 @@ export default function Index() {
               <div className="flex flex-col">
                 <p className="text-xl font-bold text-red-400">You Lose!</p>
                 <p className="text-xl">The correct champion was <span className="font-bold">{chosenChampion.name}</span></p>
+                <div className="flex">
+                  <Link target="_blank" to={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`} className="px-4 py-2 bg-blue-700 flex items-center gap-1">Share on Twitter <BsTwitter /></Link>
+                </div>
               </div>
             )}
 
@@ -170,7 +173,9 @@ export default function Index() {
         </div>
       )}
 
-      {/* <Link to={"/"}>New Game</Link> */}
+      <div className="flex item-center mt-24">
+        <Link reloadDocument className="px-4 py-2 bg-indigo-500 " to={"/"}>New Game</Link>
+      </div>
     </main>
   );
 }
