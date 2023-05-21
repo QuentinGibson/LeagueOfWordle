@@ -58,11 +58,11 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Aatrox",
-      avatar: "/champions/aatrox.webp",
+      avatar: "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Aatrox.png",
       role: { connect: { name: "Fighter" } },
       subRole: { connect: { name: "Tank" } },
       health: 650,
-      healthRate: 14,
+      healthRate: 114,
       attack: 60,
       attackRate: 5,
       attackSpeed: 0.651,
@@ -73,7 +73,7 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Lux",
-      avatar: "/champions/lux.webp",
+      avatar: "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Lux.png",
       role: { connect: { name: "Mage" } },
       subRole: { connect: { name: "Support" } },
       health: 560,
@@ -88,7 +88,7 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Annie",
-      avatar: "/champions/annie.webp",
+      avatar: "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Annie.png",
       role: { connect: { name: "Mage" } },
       health: 560,
       healthRate: 102,
@@ -102,7 +102,7 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Bard",
-      avatar: "/champions/bard.webp",
+      avatar: "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Bard.png",
       role: { connect: { name: "Support" } },
       subRole: {connect: {name: "Mage"}},
       health: 630,
@@ -117,7 +117,7 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Blitzcrank",
-      avatar: "/champions/blitzcrank.webp",
+      avatar: "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Blitzcrank.png",
       role: { connect: { name: "Tank" } },
       subRole: {connect: {name: "Fighter"}},
       health: 633,
@@ -132,7 +132,7 @@ async function seed() {
   await prisma.champion.create({
     data: {
       name: "Dr.Mundo",
-      avatar: "/champions/drmundo.webp",
+      avatar:  "http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/DrMundo.png",
       role: { connect: { name: "Fighter" } },
       subRole: {connect: {name: "Tank"}},
       health: 613,
