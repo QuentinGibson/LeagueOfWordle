@@ -2,6 +2,7 @@ import { DataFunctionArgs, redirect } from "@remix-run/node";
 import { updateChampion } from "~/models/champion.server";
 import { getSession } from "~/session.server";
 
+
 export const action = async ({ request, params }: DataFunctionArgs) => {
   const session = await getSession(request)
   const formData = await request.formData()
