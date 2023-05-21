@@ -1,3 +1,4 @@
+import invariant from 'tiny-invariant'
 import { prisma } from '~/db.server'
 
 export async function createRole(roleData: any) {
@@ -6,7 +7,12 @@ export async function createRole(roleData: any) {
 }
 
 
-export async function updateRole(typeID: string, typeData: any) {}
+export async function updateRole(roleId: string, roleData: any) {
+  const {name} = roleData
+  const role = await prisma.role.findUnique({where: {id: roleId}})
+  invariant(role, "Could not find role with ID")
+  return await prisma.role.update({where: {id: roleId}, data: {name}})
+} 
 
 export async function getRoleByID(roleId: string) {
   const role = await prisma.role.findUnique({where: {id: roleId}})

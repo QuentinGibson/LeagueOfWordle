@@ -80,6 +80,7 @@ export default function UpdateChampionRoute() {
           <input required className="border border-slate-800 rounded-lg text-black px-2" type="number" name="moveSpeed" id="moveSpeed" defaultValue={moveSpeed} />
         </div>
         <div className="flex">
+          <input type="hidden" name="championId" value={champion.id} />
           <button className="px-4 py-2 bg-blue-400 rounded-lg" type="submit">Submit</button>
         </div>
       </Form>
