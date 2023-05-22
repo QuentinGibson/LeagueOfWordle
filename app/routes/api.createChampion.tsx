@@ -17,7 +17,9 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
   const roleID: string = formObj.role as string
   const subRoleID: string = formObj.subRole as string
 
-  const championData = { name, avatar, health, healthRate, attack, attackRate, attackSpeed, moveSpeed, role: { connect: { id: roleID } }, subRole: { connect: { id: subRoleID } } }
+  const championData = subRoleID === "None"
+    ? { name, avatar, health, healthRate, attack, attackRate, attackSpeed, moveSpeed, role: { connect: { id: roleID } }, subRole: { connect: { id: subRoleID } } }
+    : { name, avatar, health, healthRate, attack, attackRate, attackSpeed, moveSpeed, role: { connect: { id: roleID } } }
   const champion = await createChampion(championData);
   session.flash("globalMessage", `New Champion, ${name}, created!`)
 

@@ -32,7 +32,7 @@ export default function NewChampionRoute() {
         <div className="flex gap-2">
           <label className="font-bold" htmlFor="subRole">Sub Role</label>
           <select className="text-black" name="subRole" id="subRole">
-            <option value="none">None</option>
+            <option value="None">None</option>
             {roles.map(role => (
               <option value={role.id}>{role.name}</option>
             ))}
