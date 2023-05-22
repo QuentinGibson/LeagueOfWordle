@@ -22,7 +22,7 @@ export default function RolesRoute() {
             </div>
             <Form method="POST" action="/api/deleteRole">
               <button type="submit" className="px-4 py-2 bg-red-500">Delete Role</button>
-              <input type="hidden" name="championID" value={role.id} />
+              <input type="hidden" name="roleId" value={role.id} />
             </Form>
           </li>
         ))}

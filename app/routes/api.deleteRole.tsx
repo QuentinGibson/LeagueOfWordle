@@ -1,7 +1,7 @@
 import { DataFunctionArgs, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import { createRole, deleteRoleByID } from "~/models/role.server";
-import { getSession } from "~/session.server";
+import { getSession, sessionStorage } from "~/session.server";
 
 export const action = async ({ request, params }: DataFunctionArgs) => {
   const session = await getSession(request)
