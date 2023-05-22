@@ -8,6 +8,7 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
   const { roleId, name } = Object.fromEntries(formData.entries())
   invariant(typeof roleId === "string", "Invalid ID")
   const role = await updateRole(roleId, name)
+  await updateRole(roleId, { name })
   if (role) session.flash("globalMessage", "Role successfully updated!")
 
   return redirect("/admin", { headers: { "Set-Cookie": await sessionStorage.commitSession(session) } })
