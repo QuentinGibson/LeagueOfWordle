@@ -7,6 +7,7 @@ export const action = async ({ request, params }: DataFunctionArgs) => {
   const formData = await request.formData()
   const { roleId, name } = Object.fromEntries(formData.entries())
   invariant(typeof roleId === "string", "Invalid ID")
+  invariant(typeof name === "string", "Invalid Name for role")
   const role = await updateRole(roleId, name)
   await updateRole(roleId, { name })
   if (role) session.flash("globalMessage", "Role successfully updated!")
